@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  grpc:
+    build:
+      context: containers/dev
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+      - ./.go/pkg:/go/pkg
+      - ./.go-cache:/go-cache
+    working_dir: /app
+    ports:
+      - "5005:5005"
+    env_file:
+      - .env
+    environment:
+      GOCACHE: /go-cache
